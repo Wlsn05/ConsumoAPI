@@ -20,15 +20,56 @@ router.get('/artists', async (req, res) => {
 })
 router.get('/addArtist', async (req, res) => {
   try {
-      const albumsResponse = await axios.get('https://wilson-storeapi.onrender.com/albums');
-      const albums = albumsResponse.data;
-      res.render('addArtist', { albums }); // Renderiza la vista con el formulario
+    const albumsResponse = await axios.get('https://wilson-storeapi.onrender.com/albums');
+    const albums = albumsResponse.data;
+    res.render('addArtist', { albums }); // Renderiza la vista con el formulario
   } catch (error) {
-      console.error('Error fetching albums:', error);
-      res.status(500).send('Error loading albums');
+    console.error('Error fetching albums:', error);
+    res.status(500).send('Error loading albums');
   }
 })
-/** 
+router.post('/addArtist', async (req, res) => {
+  try {
+    //const { albumId } = req.params; // Obtener el id desde los parámetros de la URL
+    const { id, name, nationality, albumId } = req.body;
+
+    // Verificar que todos los campos requeridos están presentes
+    if (!id || !name || !nationality || !albumId) {
+      return res.status(400).json({ error: 'Todos los campos son requeridos' });
+    }
+
+    // Crear el objeto del artista
+    const newArtist = {
+      id, // Este es el id del artista desde los parámetros
+      name,
+      nationality,
+      albums: [albumId] // Este es el id del álbum
+    };
+
+    console.log('Nuevo artista:', newArtist); // Verifica el nuevo artista
+
+    // Enviar el nuevo artista a la API externa
+    const response = await axios.post('https://wilson-storeapi.onrender.com/artist', newArtist);
+
+    // Comprobar la respuesta
+    if (response.status !== 200) {
+      return res.status(500).json({ error: 'Error al agregar el artista en la API externa' });
+    }
+
+    // Obtener la lista de artistas
+    const artistsResponse = await axios.get('https://wilson-storeapi.onrender.com/artist');
+    const artists = artistsResponse.data;
+
+    console.log(artists);
+
+    // Responder con éxito
+    res.json({ message: 'Artista agregado exitosamente', artists });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Ha ocurrido un error al agregar el artista' });
+  }
+});
+/*
 router.post('/addArtist', async (req, res) => {
   try {
       const { id, name, nationality, albumId } = req.body;
@@ -61,8 +102,8 @@ router.post('/addArtist', async (req, res) => {
       console.error(error);
       res.status(500).json({ error: 'Ha ocurrido un error al agregar el artista' });
   }
-});*/
-
+})
+/*
 router.post('/addArtist', async (req, res) => {
   try {
     const { id, name, nationality, albumId } = req.body;
@@ -92,7 +133,7 @@ router.post('/addArtist', async (req, res) => {
     console.error(error);
     res.status(500).json({ error: 'Ha ocurrido un error al agregar el artista' });
   }
-})
+})*/
 // Rutas para acceder a los albumes
 router.get('/albumes', async (req, res) => {
   try {

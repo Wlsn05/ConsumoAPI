@@ -1,38 +1,39 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mi Web de Álbumes y Artistas</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/public/styles/styles.css"> <!-- Enlace a la hoja de estilos -->
 </head>
+
 <body>
 
-<header>
-    <h1>Guarda tu musica</h1>
-    <nav>
-        <a href="albumes">Álbumes</a>
-        <a href="artists">Artistas</a>
-        <a href="addData">Agregar Álbum</a>
-        <a href="addArtist">Agregar Artista</a>
-        <a href="about">Acerca de</a>
-    </nav>
-</header>
+    <header>
+        <%- include('./templates/nav.ejs')%>
+    </header>
 
-<main>
-  <section class="introduccion">
-    <div class="contenido-centrado">
-        <h1>Bienvenido a ApiMusic</h1>
-        <p>El lugar donde la pasión por la música cobra vida. Aquí podrás explorar una vasta colección de álbumes y artistas que han dejado una huella imborrable en la historia musical.</p>
-        <ul>
-            <li>Descubrir artistas y sus albumes.</li>
-            <li>Sumergirte en álbumes icónicos.</li>
-            <li>Agregar tus propios álbumes y artistas.</li>
-        </ul>
-        <p>¡Disfruta de tu viaje musical!</p>
-    </div>
-</section>
-</main>
+    <main>
+        <section class="introduccion">
+            <div class="contenido-centrado">
+                <h1>Bienvenido a ApiMusic</h1>
+                <p>El lugar donde la pasión por la música cobra vida. Aquí podrás explorar una vasta colección de
+                    álbumes y artistas que han dejado una huella imborrable en la historia musical.</p>
 
+                    <p>Descubrir artistas y sus albumes.</p>
+                    <p>Sumergirte en álbumes icónicos.</p>
+                    <p>Agregar tus propios álbumes y artistas.</p>
+                <p>¡Disfruta de tu viaje musical!</p>
+            </div>
+        </section>
+    </main>
+    <%- include('./templates/footer.ejs')%>
 </body>
+
 </html>

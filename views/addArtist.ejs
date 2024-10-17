@@ -1,43 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Add Artist</title>
   <script src="scripts/scriptArtist.js" defer></script>
-  <link rel="stylesheet" href="/public/styles/styles.css"> 
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="/public/styles/styles.css">
 </head>
+
 <body>
   <header>
-    <h1>Agregar un artista</h1>
-    <nav>
-        <a href="albumes">Álbumes</a>
-        <a href="artists">Artistas</a>
-        <a href="addData">Agregar Álbum</a>
-        <a href="addArtist">Agregar Artista</a>
-        <a href="about">Acerca de</a>
-    </nav>
-</header>
-  <form id="artistForm">
-    <label for="id">Id del artista</label>
-    <input type="text" id="id" required>
+    <%- include('./templates/nav.ejs')%>
+  </header>
 
-    <label for="name">Nombre del artista</label>
-    <input type="text" id="name" required>
+  <main>
+    <section class="introduccion">
+      <div class="contenido-centrado">
+        <form id="artistForm">
+          <div class="mb-3">
+            <label for="id" class="form-label">Id del artista</label>
+            <input type="text" class="form-control" id="id" required>
+          </div>
+          <div class="mb-3">
+            <label for="name" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="name" required>
+          </div>
+          <div class="mb-3">
+            <label for="nationality" class="form-label">Nacionalidad</label>
+            <input type="text" class="form-control" id="nationality" required>
+          </div>
 
-    <label for="nationality">Nacionalidad</label>
-    <input type="text" id="nationality" required>
+          <label for="album">Album</label>
+          <select id="album" name="albumId" class="form-select" aria-label="Select option" required>
+            <option value="">Seleccione un álbum</option>
+            <% albums.forEach(album=> { %>
+              <option value="<%= album._id %>">
+                <%= album.title %>
+              </option>
+              <% }); %>
+          </select>
+          <button type="submit">Agregar Artista</button>
+        </form>
+        <div id="message"></div>
+      </div>
+    </section>
+  </main>
 
-    <label for="album">Album</label>
-    <select id="album" name="albumId" required> 
-      <option value="">Seleccione un álbum</option>
-      <% albums.forEach(album => { %>
-          <option value="<%= album.id %>"><%= album.title %></option> 
-      <% }); %>
-  </select>
-
-  <button type="submit">Agregar Artista</button>
-  </form>
-  <div id="message"></div>
+  <footer>
+    <%- include('./templates/footer.ejs')%>
+  </footer>
 </body>
+
 </html>
