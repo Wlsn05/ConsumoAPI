@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artistas</title>
+  <link rel="stylesheet" href="/public/styles/styles.css"> 
+</head>
+
+<body>
+  <header>
+    <h1>Artistas</h1>
+    <nav>
+        <a href="albumes">Álbumes</a>
+        <a href="artists">Artistas</a>
+        <a href="addData">Agregar Álbum</a>
+        <a href="addArtist">Agregar Artista</a>
+        <a href="about">Acerca de</a>
+    </nav>
+</header>
+  <ul>
+    <% artist.forEach(artist=> { %>
+      <li>
+          <p>Nombre del artista</p><%= artist.name %>
+      </li>
+      <li>
+        <p>Nacionalidad</p><%= artist.nationality %>
+      </li>
+      <ul>
+        <% artist.albums.forEach(album => { %>
+            <li><%= album.title %> - Año: <%= album.releaseDate %></li>
+        <% }); %>
+    </ul>
+      <% }); %>
+  </ul>
+</body>
+
+</html>

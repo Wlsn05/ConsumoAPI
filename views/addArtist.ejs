@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Artist</title>
+  <script src="scripts/scriptArtist.js" defer></script>
+  <link rel="stylesheet" href="/public/styles/styles.css"> 
+</head>
+<body>
+  <header>
+    <h1>Agregar un artista</h1>
+    <nav>
+        <a href="albumes">Álbumes</a>
+        <a href="artists">Artistas</a>
+        <a href="addData">Agregar Álbum</a>
+        <a href="addArtist">Agregar Artista</a>
+        <a href="about">Acerca de</a>
+    </nav>
+</header>
+  <form id="artistForm">
+    <label for="id">Id del artista</label>
+    <input type="text" id="id" required>
+
+    <label for="name">Nombre del artista</label>
+    <input type="text" id="name" required>
+
+    <label for="nationality">Nacionalidad</label>
+    <input type="text" id="nationality" required>
+
+    <label for="album">Album</label>
+    <select id="album" name="albumId" required> 
+      <option value="">Seleccione un álbum</option>
+      <% albums.forEach(album => { %>
+          <option value="<%= album.id %>"><%= album.title %></option> 
+      <% }); %>
+  </select>
+
+  <button type="submit">Agregar Artista</button>
+  </form>
+  <div id="message"></div>
+</body>
+</html>

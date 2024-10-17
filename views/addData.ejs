@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agregar Álbum</title>
+  <link rel="stylesheet" href="/public/styles/styles.css"> 
+  <script src="scripts/scripts.js" defer></script>
+</head>
+
+<body>
+  
+  <header>
+    <h1>Agregar album</h1>
+    <nav>
+        <a href="albumes">Álbumes</a>
+        <a href="artists">Artistas</a>
+        <a href="addData">Agregar Álbum</a>
+        <a href="addArtist">Agregar Artista</a>
+        <a href="about">Acerca de</a>
+    </nav>
+</header>
+
+  <form id="albumForm">
+    <label for="id">Id del álbum</label>
+    <input type="text" id="id" required>
+    
+    <label for="title">Título del Álbum:</label>
+    <input type="text" id="title" required>
+    
+    <label for="releaseDate">Fecha de lanzamiento:</label>
+    <input type="date" id="releaseDate" required>
+    
+    <label for="genero">Género musical:</label>
+    <input type="text" id="genero" required>
+    
+    <button type="submit">Agregar Álbum</button>
+  </form>
+  <div id="message"></div>
+</body>
+
+</html>
